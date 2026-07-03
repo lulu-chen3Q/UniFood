@@ -24,6 +24,21 @@ dist/
 build/
 *.min.js
 *.map
+npm-debug.log*
+# ================== 编辑器临时文件、缓存================== 
+.idea/
+.vscode/
+# ================== 操作系统生成的隐藏文件================== 
+.DS_Store
+Thumbs.db
+# ================== 环境配置密钥文件（防止数据库、接口密钥泄露）================== 
+.env
+.env.local
+.env.development
+.env.production
+# ================== yarn pnpm日志================== 
+yarn-error.log
+pnpm-debug.log*
 
 # ================== Environment ==================
 *.env
