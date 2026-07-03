@@ -1,0 +1,59 @@
+# ================== Maven / Java ==================
+target/
+*.jar
+*.war
+*.class
+*.log
+*.tmp
+
+# ================== IDE ==================
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+
+# ================== OS ==================
+.DS_Store
+Thumbs.db
+
+# ================== Frontend (如果提交前端) ==================
+node_modules/
+dist/
+build/
+*.min.js
+*.map
+
+# ================== Environment ==================
+*.env
+application-dev.yml
+application-prod.yml
+application-test.yml
+
+# ================== Logs ==================
+logs/
+log/
+*.log
+
+# ================== Temporary files ==================
+*.swp
+*.swo
+*~
+temp/
+tmp/
+
+# ================== Database ==================
+*.db
+*.sqlite
+
+# ================== Other ==================
+*.pid
+*.seed
+*.pid.lock
+
+# 如果你用了 Docker
+.dockerignore
+
+# 忽略本地配置文件
+config/local-*.properties
