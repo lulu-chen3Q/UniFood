@@ -1,16 +1,20 @@
 package com.unifood.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.unifood.constant.MessageConstant;
 import com.unifood.constant.PasswordConstant;
 import com.unifood.constant.StatusConstant;
 import com.unifood.context.BaseContext;
 import com.unifood.dto.EmployeeDTO;
 import com.unifood.dto.EmployeeLoginDTO;
+import com.unifood.dto.EmployeePageQueryDTO;
 import com.unifood.entity.Employee;
 import com.unifood.exception.AccountLockedException;
 import com.unifood.exception.AccountNotFoundException;
 import com.unifood.exception.PasswordErrorException;
 import com.unifood.mapper.EmployeeMapper;
+import com.unifood.result.PageResult;
 import com.unifood.service.EmployeeService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -79,6 +84,21 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setUpdateUser(BaseContext.getCurrentId());
 
         employeeMapper.insert(employee);
+    }
+    /**
+     * 分页查询
+     * @param employeePageQueryDTO
+     */
+    //TODO 返回值报错为解决
+    @Override
+    public PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO) {
+    //selec page from empoyee where 。。。limit
+        //开始分页查询
+        PageHelper.startPage(employeePageQueryDTO.getPage(),employeePageQueryDTO.getPageSize());
+        Page<Employee> page = employeeMapper.pageQuery(employeePageQueryDTO);
+        long totals = page.getTotal();
+        List<Employee> records = page.getResult();
+        return new PageResult(totals,records);
     }
 
 }

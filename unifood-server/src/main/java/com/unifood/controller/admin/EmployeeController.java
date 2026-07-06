@@ -4,8 +4,10 @@ import com.unifood.UniFoodApplication;
 import com.unifood.constant.JwtClaimsConstant;
 import com.unifood.dto.EmployeeDTO;
 import com.unifood.dto.EmployeeLoginDTO;
+import com.unifood.dto.EmployeePageQueryDTO;
 import com.unifood.entity.Employee;
 import com.unifood.properties.JwtProperties;
+import com.unifood.result.PageResult;
 import com.unifood.result.Result;
 import com.unifood.service.EmployeeService;
 import com.unifood.utils.JwtUtil;
@@ -15,10 +17,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -93,4 +92,14 @@ public class EmployeeController {
         return Result.success();
     }
 
+    /**
+     * 分页查询
+     */
+    @GetMapping("/page")
+    @ApiOperation("分页查询")
+    public Result<PageResult> Page(EmployeePageQueryDTO employeePageQueryDTO){
+        log.info("分页查询;{}",employeePageQueryDTO);
+        PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
+        return Result.success(pageResult);
+    }
 }
