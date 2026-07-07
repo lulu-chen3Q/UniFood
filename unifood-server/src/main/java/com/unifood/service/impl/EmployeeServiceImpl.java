@@ -100,5 +100,20 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> records = page.getResult();
         return new PageResult(totals,records);
     }
-
+    /**
+     * 启用禁用员工账号
+     * @param status
+     * @param id
+     */
+    @Override
+    public void startOrStop(Integer status, Long id) {
+        //根据员工的id 设置他的启用禁用员工账号
+        //update employee set status = ？ id =？
+        //动态sql 封装到实体类
+        Employee employee = Employee.builder()
+                        .status(status)
+                                .id(id)
+                                        .build();
+        employeeMapper.updata(employee);
+    }
 }

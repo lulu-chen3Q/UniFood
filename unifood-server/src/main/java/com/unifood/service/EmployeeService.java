@@ -5,7 +5,6 @@ import com.unifood.dto.EmployeeLoginDTO;
 import com.unifood.dto.EmployeePageQueryDTO;
 import com.unifood.entity.Employee;
 import com.unifood.result.PageResult;
-import org.apache.ibatis.annotations.Param;
 
 public interface EmployeeService {
 
@@ -28,5 +27,11 @@ public interface EmployeeService {
      */
     PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
 
+    /**
+     * 启用禁用员工账号
+     * @param status
+     * @param id
+     */
+    void startOrStop(Integer status, Long id);
 
 }

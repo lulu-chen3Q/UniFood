@@ -2,6 +2,7 @@ package com.unifood.controller.admin;
 
 import com.unifood.UniFoodApplication;
 import com.unifood.constant.JwtClaimsConstant;
+import com.unifood.constant.StatusConstant;
 import com.unifood.dto.EmployeeDTO;
 import com.unifood.dto.EmployeeLoginDTO;
 import com.unifood.dto.EmployeePageQueryDTO;
@@ -19,6 +20,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -101,5 +103,17 @@ public class EmployeeController {
         log.info("分页查询;{}",employeePageQueryDTO);
         PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(pageResult);
+    }
+
+    /**
+     * 启用禁用员工账号
+     */
+    //TODO 控制层参数未完善 其他还未开始写 了解传参对文档相关部分
+    @PostMapping("/status/{status}")
+    @ApiOperation("启用禁用员工账号")
+    public Result startOrStop(@PathVariable Integer status, Long id){
+        log.info("启用禁用员工账号：{},{}",status,id);
+        employeeService.startOrStop(status,id);
+        return Result.success();
     }
 }
