@@ -108,12 +108,38 @@ public class EmployeeController {
     /**
      * 启用禁用员工账号
      */
-    //TODO 控制层参数未完善 其他还未开始写 了解传参对文档相关部分
     @PostMapping("/status/{status}")
     @ApiOperation("启用禁用员工账号")
     public Result startOrStop(@PathVariable Integer status, Long id){
         log.info("启用禁用员工账号：{},{}",status,id);
         employeeService.startOrStop(status,id);
+        return Result.success();
+    }
+
+    /**
+     *根据id查询员工
+     * @param id
+     * @return
+     */
+    //todo 前后端回调不回显
+    @GetMapping("/employee/{id}")
+    @ApiOperation("根据id查询员工")
+    public Result<Employee> getById(@PathVariable Long id){
+        log.info("根据id查询员工,{}",id);
+        Employee employee = employeeService.getById(id);
+        return Result.success(employee);
+    }
+
+    /**
+     *编辑员工信息
+     * @param employeeDTO
+     * @return
+     */
+    @PutMapping
+    @ApiOperation("编辑员工信息")
+    public Result update(@RequestBody EmployeeDTO employeeDTO){
+        log.info("编辑员工信息:{}",employeeDTO);
+        employeeService.updata(employeeDTO);
         return Result.success();
     }
 }
