@@ -114,7 +114,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                         .status(status)
                                 .id(id)
                                         .build();
-        employeeMapper.updata(employee);
+        employeeMapper.update(employee);
     }
     /**
      * 根据id查询员工
@@ -137,7 +137,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return
      */
     @Override
-    public void updata(EmployeeDTO employeeDTO) {
+    public void update(EmployeeDTO employeeDTO) {
         //update在mapper的update方法可以复用 但是mapper那里要的是employee对象
         //所以这里做一个数据转换 创建一个空employee 然后对象属性拷贝
         Employee employee = new Employee();
@@ -145,6 +145,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         //dto里并没有创建时间 修改时间 需要单独设置
         employee.setUpdateTime(LocalDateTime.now());
         employee.setUpdateUser(BaseContext.getCurrentId());
-        employeeMapper.updata(employee);
+        employeeMapper.update(employee);
     }
 }

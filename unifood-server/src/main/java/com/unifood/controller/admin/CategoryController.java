@@ -22,40 +22,56 @@ public class CategoryController {
 
     /**
      * 新增分类
+     *
      * @param categoryDTO
      * @return
      */
     @PostMapping("/admin/category")
     @ApiOperation("新增分类")
-    public Result<String> newAddCategory(@RequestBody CategoryDTO categoryDTO){
-    log.info("新增分类:{}",categoryDTO);
-    categoryService.newAddCategory(categoryDTO);
+    public Result<String> newAddCategory(@RequestBody CategoryDTO categoryDTO) {
+        log.info("新增分类:{}", categoryDTO);
+        categoryService.newAddCategory(categoryDTO);
         return Result.success();
     }
 
     /**
      * 分类分页查询
+     *
      * @param categoryPageQueryDTO
      * @return
      */
     @ApiOperation("分类分页查询")
     @GetMapping("/page")
-    public Result<PageResult> page(CategoryPageQueryDTO  categoryPageQueryDTO){
-        log.info("分类分页查询：{}",categoryPageQueryDTO);
-        PageResult pageResult =categoryService.pageQuery(categoryPageQueryDTO);
+    public Result<PageResult> page(CategoryPageQueryDTO categoryPageQueryDTO) {
+        log.info("分类分页查询：{}", categoryPageQueryDTO);
+        PageResult pageResult = categoryService.pageQuery(categoryPageQueryDTO);
         return Result.success(pageResult);
     }
 
     /**
      * 删除分类
+     *
      * @param id
      * @return
      */
     @DeleteMapping
     @ApiOperation("删除分类")
-    public Result<Category> deleteById(Long id){
-        log.info("删除分类：{}",id);
+    public Result<Category> deleteById(Long id) {
+        log.info("删除分类：{}", id);
         categoryService.deleteById(id);
-    return Result.success();
+        return Result.success();
+    }
+
+    /**
+     * 修改分类
+     * @param categoryDTO
+     * @return
+     */
+    @PutMapping
+    @ApiOperation("修改分类")
+    public Result<String> update(@RequestBody CategoryDTO categoryDTO) {
+        log.info("修改分类：{}", categoryDTO);
+        categoryService.update(categoryDTO);
+        return Result.success();
     }
 }

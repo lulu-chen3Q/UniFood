@@ -47,5 +47,5 @@ public interface EmployeeService {
      * @param employeeDTO
      * @return
      */
-    void updata(EmployeeDTO employeeDTO);
+    void update(EmployeeDTO employeeDTO);
 }

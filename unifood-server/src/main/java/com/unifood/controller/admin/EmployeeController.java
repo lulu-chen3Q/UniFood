@@ -29,6 +29,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/admin/employee")
+
 @Slf4j
 @Api(tags = "员工相关接口")
 public class EmployeeController {
@@ -137,9 +138,9 @@ public class EmployeeController {
      */
     @PutMapping
     @ApiOperation("编辑员工信息")
-    public Result update(@RequestBody EmployeeDTO employeeDTO){
+    public Result<String> update(@RequestBody EmployeeDTO employeeDTO){
         log.info("编辑员工信息:{}",employeeDTO);
-        employeeService.updata(employeeDTO);
+        employeeService.update(employeeDTO);
         return Result.success();
     }
 }
