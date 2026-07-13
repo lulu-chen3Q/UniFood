@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface CategoryMapper {
     /**
@@ -33,9 +35,18 @@ public interface CategoryMapper {
 
 
     /**
+     * 启用、禁用分类
      * 修改分类
      * @param category
      * @return
      */
     void update(Category category);
+
+    /**
+     * 根据类型查询分类
+     *
+     * @param category
+     * @return
+     */
+    List<Category> getBySortSelectCategory(Category category);
 }

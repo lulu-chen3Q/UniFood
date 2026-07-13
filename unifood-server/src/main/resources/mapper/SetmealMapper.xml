@@ -26,4 +26,10 @@
         </where>
             order by sort asc , create_time desc
     </select>
+    <select id="getBySortSelectCategory" parameterType="com.unifood.entity.Category"
+            resultType="com.unifood.entity.Category">
+    select * from category where status = 1
+        <if test="type != null">and type = #{type}</if>
+    order by sort asc ,create_time desc
+    </select>
 </mapper>

@@ -123,7 +123,7 @@ public class EmployeeController {
      * @return
      */
     //todo 前后端回调不回显
-    @GetMapping("/employee/{id}")
+    @GetMapping("/{id}")
     @ApiOperation("根据id查询员工")
     public Result<Employee> getById(@PathVariable Long id){
         log.info("根据id查询员工,{}",id);

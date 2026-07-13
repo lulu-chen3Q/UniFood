@@ -2,7 +2,10 @@ package com.unifood.service;
 
 import com.unifood.dto.CategoryDTO;
 import com.unifood.dto.CategoryPageQueryDTO;
+import com.unifood.entity.Category;
 import com.unifood.result.PageResult;
+
+import java.util.List;
 
 public interface CategoryService {
     /**
@@ -30,4 +33,17 @@ public interface CategoryService {
      * @return
      */
     void update(CategoryDTO categoryDTO);
+    /**
+     * 启用、禁用分类
+     * @param status
+     * @param id
+     * @return
+     */
+    void startOrStop(Integer status, Long id);
+    /**
+     * 根据类型查询分类
+     * @param type
+     * @return
+     */
+    List<Category> getBySortSelectCategory(Integer type);
 }

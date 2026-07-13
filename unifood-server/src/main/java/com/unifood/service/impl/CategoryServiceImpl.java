@@ -19,6 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Locale;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -103,4 +105,33 @@ public class CategoryServiceImpl implements CategoryService {
         category.setUpdateUser(BaseContext.getCurrentId());
         categoryMapper.update(category);
     }
+    /**
+     * 启用、禁用分类
+     * @param status
+     * @param id
+     * @return
+     */
+    @Override
+    public void startOrStop(Integer status, Long id) {
+        Category category =Category.builder()
+                .status(status)
+                        .id(id)
+                                .build();
+        categoryMapper.update(category);
+    }
+    /**
+     * 根据类型查询分类
+     * @param type
+     * @return
+     */
+    @Override
+    public List<Category> getBySortSelectCategory(Integer type) {
+        //传参字段才更新 动态sql
+        Category category = Category.builder()
+                .type(type)
+                .build();
+        return categoryMapper.getBySortSelectCategory(category);
+    }
+
 }
+
